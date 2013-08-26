@@ -12,7 +12,6 @@ class Minesweeper
     @size = size
     @bomb_num = bomb_num
     @board = []
-    @flag_num = 0
     @pow = false
     @reveal_count = 0
   end
@@ -98,30 +97,29 @@ class Minesweeper
 
   def flag(x,y)
     if @board[x][y].display == "F"
-      @flag_num -= 1
       @board[x][y].display = "*"
     else
-      @flag_num += 1
       @board[x][y].display = "F"
     end
   end
 
   def reveal(x,y)
     count = nil
-    if @board[x][y].bomb
-      @board[x][y].display = "X"
-      @pow = true
-    else
-      neighbors = neighbors(x, y)
-      count = count_bombs(neighbors)
-      @board[x][y].display = count.to_s
+    unless @board[x][y].display == "F"
+      if @board[x][y].bomb
+        @board[x][y].display = "X"
+        @pow = true
+      else
+        neighbors = neighbors(x, y)
+        count = count_bombs(neighbors)
+        @board[x][y].display = count.to_s
 
+      end
+      if count == 0
+        @board[x][y].display = "0"
+        neighbors.each { |neighbor| reveal(neighbor.x, neighbor.y) }
+      end
     end
-    if count == 0
-      @board[x][y].display = "0"
-      neighbors.each { |neighbor| reveal(neighbor.x, neighbor.y) }
-    end
-
   end
 
   def count_bombs(neighbors)
