@@ -14,6 +14,8 @@ class Minesweeper
     @board = []
     @pow = false
     @reveal_count = 0
+    @start_time = 0
+    @cheat_mode = false
   end
 
   def run
@@ -24,6 +26,21 @@ class Minesweeper
     until over?
       user_input
       print_board
+    end
+    display_outcome
+
+  end
+
+  def start_timer
+    @start_time = Time.now
+  end
+
+  def display_outcome
+    if @pow
+      puts 'You lose.'
+    else
+      puts 'You win!'
+      puts "You took #{Time.now-@start_time} seconds."
     end
   end
 
@@ -53,19 +70,36 @@ class Minesweeper
     end
   end
 
-  def print_board
-    @board.each do |x|
-      # x.each { |y| print y.display + " " }
-      # puts ""
+  def print_cheat_board
+    print "   "
+    (0...@size).each {|i| print '%02d'% i + " "}
+    puts ""
+    @board.each_with_index do |x, i|
+      print '%02d'% i + "|"
       x.each do |y|
         if y.bomb
-          print "! "
+          print "!  "
         else
-          print y.display + " "
+          print y.display + "  "
         end
       end
       puts ""
     end
+  end
+
+  def print_normal_board
+    print "   "
+    (0...@size).each {|i| print '%02d'% i + " "}
+    puts ""
+    @board.each_with_index do |x, i|
+      print '%02d'% i + "|"
+      x.each { |y| print y.display + "  " }
+      puts ""
+    end
+  end
+
+  def print_board
+    @cheat_mode ? print_cheat_board : print_normal_board
   end
 
   def over?
@@ -79,14 +113,15 @@ class Minesweeper
         unrevealed_count += 1 if ["*", "F"].include?(y.display)
       end
     end
-    puts "Unreveal count is: #{unrevealed_count}"
+    puts "Spaces to clear: #{unrevealed_count-@bomb_num}"
     unrevealed_count
   end
 
   def user_input
     p "Do something"
     input = gets.chomp.split(" ")
-    current_square = @board[input[1].to_i][input[2].to_i]
+    @cheat_mode = true if input[0] == "winwinwin"
+    current_square = @board[input[2].to_i][input[1].to_i]
     case input[0].upcase
     when "R"
       current_square.reveal(self)
@@ -116,6 +151,6 @@ class Minesweeper
 
 end
 
-ms = Minesweeper.new(9 , 10)
+ms = Minesweeper.new(16, 40)
 ms.run
 
