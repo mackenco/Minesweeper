@@ -17,13 +17,18 @@ class Minesweeper
     @reveal_count = 0
     @start_time = 0
     @cheat_mode = false
+    @new = true
   end
 
   def run
-    build_board
-    fill_bombs
+    if @new
+      build_board
+      fill_bombs
+      start_timer
+      @new = false
+    end
+
     print_board
-    start_timer
 
     until over?
       user_input
@@ -129,7 +134,13 @@ class Minesweeper
       current_square.reveal(self)
     when "F"
       current_square.flag
+    when "S"
+      save
     end
+  end
+
+  def save
+    File.open('minesweeper_saves.txt', 'w') {|file| file.puts self.to_yaml}
   end
 
   def count_bombs(neighbors)
@@ -154,6 +165,19 @@ class Minesweeper
 end
 
 puts "MINESWEEPER: Do you want to start a new game or load an existing game?"
-ms = Minesweeper.new(16, 255)
+input = gets.chomp
+case input
+when 'load'
+  file = File.read("minesweeper_saves.txt")
+  ms = YAML::load(file)
+when 'start'
+  puts "What size board do you want?"
+  board_size = gets.chomp.to_i
+  puts "How many bombs do you want?"
+  bombs = gets.chomp.to_i
+  ms = Minesweeper.new(board_size, bombs)
+end
+
 ms.run
+
 

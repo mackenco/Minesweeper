@@ -1,0 +1,413 @@
+--- !ruby/object:Minesweeper
+size: 9
+bomb_num: 10
+board:
+- - !ruby/object:Square
+    x: 0
+    y: 0
+    bomb: false
+    display: '1'
+  - !ruby/object:Square
+    x: 0
+    y: 1
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 0
+    y: 2
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 0
+    y: 3
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 0
+    y: 4
+    bomb: true
+    display: ! '*'
+  - !ruby/object:Square
+    x: 0
+    y: 5
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 0
+    y: 6
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 0
+    y: 7
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 0
+    y: 8
+    bomb: false
+    display: ! '*'
+- - !ruby/object:Square
+    x: 1
+    y: 0
+    bomb: true
+    display: ! '*'
+  - !ruby/object:Square
+    x: 1
+    y: 1
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 1
+    y: 2
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 1
+    y: 3
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 1
+    y: 4
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 1
+    y: 5
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 1
+    y: 6
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 1
+    y: 7
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 1
+    y: 8
+    bomb: true
+    display: ! '*'
+- - !ruby/object:Square
+    x: 2
+    y: 0
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 2
+    y: 1
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 2
+    y: 2
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 2
+    y: 3
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 2
+    y: 4
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 2
+    y: 5
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 2
+    y: 6
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 2
+    y: 7
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 2
+    y: 8
+    bomb: false
+    display: ! '*'
+- - !ruby/object:Square
+    x: 3
+    y: 0
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 3
+    y: 1
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 3
+    y: 2
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 3
+    y: 3
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 3
+    y: 4
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 3
+    y: 5
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 3
+    y: 6
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 3
+    y: 7
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 3
+    y: 8
+    bomb: false
+    display: ! '*'
+- - !ruby/object:Square
+    x: 4
+    y: 0
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 4
+    y: 1
+    bomb: true
+    display: ! '*'
+  - !ruby/object:Square
+    x: 4
+    y: 2
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 4
+    y: 3
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 4
+    y: 4
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 4
+    y: 5
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 4
+    y: 6
+    bomb: true
+    display: ! '*'
+  - !ruby/object:Square
+    x: 4
+    y: 7
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 4
+    y: 8
+    bomb: true
+    display: ! '*'
+- - !ruby/object:Square
+    x: 5
+    y: 0
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 5
+    y: 1
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 5
+    y: 2
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 5
+    y: 3
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 5
+    y: 4
+    bomb: true
+    display: ! '*'
+  - !ruby/object:Square
+    x: 5
+    y: 5
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 5
+    y: 6
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 5
+    y: 7
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 5
+    y: 8
+    bomb: false
+    display: ! '*'
+- - !ruby/object:Square
+    x: 6
+    y: 0
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 6
+    y: 1
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 6
+    y: 2
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 6
+    y: 3
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 6
+    y: 4
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 6
+    y: 5
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 6
+    y: 6
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 6
+    y: 7
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 6
+    y: 8
+    bomb: false
+    display: ! '*'
+- - !ruby/object:Square
+    x: 7
+    y: 0
+    bomb: true
+    display: ! '*'
+  - !ruby/object:Square
+    x: 7
+    y: 1
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 7
+    y: 2
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 7
+    y: 3
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 7
+    y: 4
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 7
+    y: 5
+    bomb: true
+    display: ! '*'
+  - !ruby/object:Square
+    x: 7
+    y: 6
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 7
+    y: 7
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 7
+    y: 8
+    bomb: false
+    display: ! '*'
+- - !ruby/object:Square
+    x: 8
+    y: 0
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 8
+    y: 1
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 8
+    y: 2
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 8
+    y: 3
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 8
+    y: 4
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 8
+    y: 5
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 8
+    y: 6
+    bomb: true
+    display: ! '*'
+  - !ruby/object:Square
+    x: 8
+    y: 7
+    bomb: false
+    display: ! '*'
+  - !ruby/object:Square
+    x: 8
+    y: 8
+    bomb: false
+    display: ! '*'
+pow: false
+reveal_count: 0
+start_time: 2013-08-26 17:15:05.289917000 -04:00
+cheat_mode: false
