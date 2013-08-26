@@ -89,20 +89,29 @@ class Minesweeper
       @board[x][y].display = "X"
       @pow = true
     else
-      neighbors = []
+      count = count_bombs(neighbors(x, y))
 
 
 
     end
   end
 
+
+  def count_bombs(neighbors)
+    neighbors.inject(0) { |total, neighbor| neighbor.bomb ? total + 1 : total }
+  end
+
   def neighbors(x, y)
+
     neighbors = []
+
     POSSIBLE_NEIGHBORS.each do |poss|
       square = board[poss[0] + x][poss[1] + y]
-      neighbors << square unless square.nil?
+      neighbors << square unless square.nil? ||
+                             ("0".."8").include?(square.display)
     end
 
+    neighbors
   end
 
 end
