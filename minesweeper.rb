@@ -43,15 +43,15 @@ class Minesweeper
     key = name + Time.now.to_s
     scoreboard = {}
 
-    File.readlines("scoreboard.txt") do |line|
-      temp_line = line.split(" ")
+    File.readlines("scoreboard.txt").each do |line|
+      temp_line = line.split(",")
       scoreboard[temp_line[0]] = temp_line[1]
     end
     scoreboard[key] = @timer
 
     File.open("scoreboard.txt", "w")  do |file|
       scoreboard.each do |key, value|
-        file.puts "#{key} #{value}"
+        file.puts "#{key},#{value}"
       end
     end
     p scoreboard
