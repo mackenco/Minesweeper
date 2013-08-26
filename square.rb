@@ -23,11 +23,14 @@ class Square
         count = game.count_bombs(neighbors)
         @display = count.to_s
       end
-      if count == 0
-        @display = "0"
-        neighbors.each { |neighbor| neighbor.reveal(game) }
-      end
+
+      expand(neighbors, game) if count == 0
     end
+  end
+
+  def expand(neighbors, game)
+    @display = "0"
+    neighbors.each { |neighbor| neighbor.reveal(game) }
   end
 
 end
