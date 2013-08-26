@@ -14,6 +14,7 @@ class Minesweeper
     @board = []
     @flag_num = 0
     @pow = false
+    @reveal_count = 0
   end
 
   def build_board
@@ -62,18 +63,20 @@ class Minesweeper
     fill_bombs
     print_board
 
-    until @pow
+    until over?
       user_input
       print_board
     end
 
-    check_victory #will
+  end
 
+  def over?
+    true if @pow || @reveal_count == ((@size**2) - @bomb_num)
   end
 
   def user_input
     p "Do something"
-    input = gets.chomp
+    input = gets.chomp.split(" ")
     case input[0].upcase
     when "R"
       reveal(input[1].to_i, input[2].to_i)
@@ -101,8 +104,10 @@ class Minesweeper
       neighbors = neighbors(x, y)
       count = count_bombs(neighbors)
       @board[x][y].display = count.to_s
+      @reveal_count +=1
     end
     if count == 0
+      @board[x][y].display = "0"
       neighbors.each { |neighbor| reveal(neighbor.x, neighbor.y) }
     end
   end
@@ -119,7 +124,7 @@ class Minesweeper
       if (poss[0] + x).between?(0, @size-1) &&
                                             (poss[1] + y).between?(0, @size-1)
         square = board[poss[0] + x][poss[1] + y]
-        neighbors << square unless ("0".."8").include?(square.display)
+        neighbors << square unless ("0"...@size.to_s).include?(square.display)
       end
     end
 
