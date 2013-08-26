@@ -11,7 +11,7 @@ class Minesweeper
     @size.times do |x|
       x = []
       x.each do |y|
-        square = Square.new([x,y])
+        square = Square.new(x, y)
         x[y] = square
       end
     end
