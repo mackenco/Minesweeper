@@ -1,3 +1,4 @@
+require 'yaml'
 load 'square.rb'
 
 class Minesweeper
@@ -22,6 +23,7 @@ class Minesweeper
     build_board
     fill_bombs
     print_board
+    start_timer
 
     until over?
       user_input
@@ -40,7 +42,7 @@ class Minesweeper
       puts 'You lose.'
     else
       puts 'You win!'
-      puts "You took #{Time.now-@start_time} seconds."
+      puts "You took #{Time.now-@start_time} seconds!"
     end
   end
 
@@ -151,6 +153,7 @@ class Minesweeper
 
 end
 
-ms = Minesweeper.new(16, 40)
+puts "MINESWEEPER: Do you want to start a new game or load an existing game?"
+ms = Minesweeper.new(16, 255)
 ms.run
 
