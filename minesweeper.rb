@@ -15,7 +15,7 @@ class Minesweeper
     @board = []
     @pow = false
     @reveal_count = 0
-    @start_time = 0
+    @timer = 0
     @cheat_mode = false
     @new = true
   end
@@ -35,19 +35,40 @@ class Minesweeper
       print_board
     end
     display_outcome
+  end
 
+  def update_scoreboard
+    puts "What's your name?"
+    name = gets.chomp
+    key = name + Time.now.to_s
+    scoreboard = {}
+
+    File.readlines("scoreboard.txt") do |line|
+      temp_line = line.split(" ")
+      scoreboard[temp_line[0]] = temp_line[1]
+    end
+    scoreboard[key] = @timer
+
+    File.open("scoreboard.txt", "w")  do |file|
+      scoreboard.each do |key, value|
+        file.puts "#{key} #{value}"
+      end
+    end
+    p scoreboard
   end
 
   def start_timer
-    @start_time = Time.now
+    @timer = Time.now
   end
 
   def display_outcome
     if @pow
       puts 'You lose.'
     else
+      @timer = Time.now-@timer
       puts 'You win!'
-      puts "You took #{Time.now-@start_time} seconds!"
+      puts "You took #{@timer} seconds!"
+      update_scoreboard
     end
   end
 
@@ -125,7 +146,7 @@ class Minesweeper
   end
 
   def user_input
-    p "Do something"
+    puts "Do something"
     input = gets.chomp.split(" ")
     @cheat_mode = true if input[0] == "winwinwin"
     current_square = @board[input[2].to_i][input[1].to_i]
@@ -141,6 +162,7 @@ class Minesweeper
 
   def save
     File.open('minesweeper_saves.txt', 'w') {|file| file.puts self.to_yaml}
+    puts "File saved"
   end
 
   def count_bombs(neighbors)

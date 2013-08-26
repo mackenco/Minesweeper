@@ -6,7 +6,7 @@ board:
     x: 0
     y: 0
     bomb: false
-    display: '1'
+    display: ! '*'
   - !ruby/object:Square
     x: 0
     y: 1
@@ -25,7 +25,7 @@ board:
   - !ruby/object:Square
     x: 0
     y: 4
-    bomb: true
+    bomb: false
     display: ! '*'
   - !ruby/object:Square
     x: 0
@@ -50,12 +50,12 @@ board:
 - - !ruby/object:Square
     x: 1
     y: 0
-    bomb: true
+    bomb: false
     display: ! '*'
   - !ruby/object:Square
     x: 1
     y: 1
-    bomb: false
+    bomb: true
     display: ! '*'
   - !ruby/object:Square
     x: 1
@@ -65,7 +65,7 @@ board:
   - !ruby/object:Square
     x: 1
     y: 3
-    bomb: false
+    bomb: true
     display: ! '*'
   - !ruby/object:Square
     x: 1
@@ -90,7 +90,7 @@ board:
   - !ruby/object:Square
     x: 1
     y: 8
-    bomb: true
+    bomb: false
     display: ! '*'
 - - !ruby/object:Square
     x: 2
@@ -140,7 +140,7 @@ board:
 - - !ruby/object:Square
     x: 3
     y: 0
-    bomb: false
+    bomb: true
     display: ! '*'
   - !ruby/object:Square
     x: 3
@@ -160,7 +160,7 @@ board:
   - !ruby/object:Square
     x: 3
     y: 4
-    bomb: false
+    bomb: true
     display: ! '*'
   - !ruby/object:Square
     x: 3
@@ -190,7 +190,7 @@ board:
   - !ruby/object:Square
     x: 4
     y: 1
-    bomb: true
+    bomb: false
     display: ! '*'
   - !ruby/object:Square
     x: 4
@@ -215,17 +215,17 @@ board:
   - !ruby/object:Square
     x: 4
     y: 6
-    bomb: true
-    display: ! '*'
-  - !ruby/object:Square
-    x: 4
-    y: 7
     bomb: false
     display: ! '*'
   - !ruby/object:Square
     x: 4
-    y: 8
+    y: 7
     bomb: true
+    display: ! '*'
+  - !ruby/object:Square
+    x: 4
+    y: 8
+    bomb: false
     display: ! '*'
 - - !ruby/object:Square
     x: 5
@@ -250,12 +250,12 @@ board:
   - !ruby/object:Square
     x: 5
     y: 4
-    bomb: true
+    bomb: false
     display: ! '*'
   - !ruby/object:Square
     x: 5
     y: 5
-    bomb: false
+    bomb: true
     display: ! '*'
   - !ruby/object:Square
     x: 5
@@ -310,7 +310,7 @@ board:
   - !ruby/object:Square
     x: 6
     y: 7
-    bomb: false
+    bomb: true
     display: ! '*'
   - !ruby/object:Square
     x: 6
@@ -320,7 +320,7 @@ board:
 - - !ruby/object:Square
     x: 7
     y: 0
-    bomb: true
+    bomb: false
     display: ! '*'
   - !ruby/object:Square
     x: 7
@@ -330,7 +330,7 @@ board:
   - !ruby/object:Square
     x: 7
     y: 2
-    bomb: false
+    bomb: true
     display: ! '*'
   - !ruby/object:Square
     x: 7
@@ -345,7 +345,7 @@ board:
   - !ruby/object:Square
     x: 7
     y: 5
-    bomb: true
+    bomb: false
     display: ! '*'
   - !ruby/object:Square
     x: 7
@@ -360,7 +360,7 @@ board:
   - !ruby/object:Square
     x: 7
     y: 8
-    bomb: false
+    bomb: true
     display: ! '*'
 - - !ruby/object:Square
     x: 8
@@ -375,7 +375,7 @@ board:
   - !ruby/object:Square
     x: 8
     y: 2
-    bomb: false
+    bomb: true
     display: ! '*'
   - !ruby/object:Square
     x: 8
@@ -395,7 +395,7 @@ board:
   - !ruby/object:Square
     x: 8
     y: 6
-    bomb: true
+    bomb: false
     display: ! '*'
   - !ruby/object:Square
     x: 8
@@ -409,5 +409,6 @@ board:
     display: ! '*'
 pow: false
 reveal_count: 0
-start_time: 2013-08-26 17:15:05.289917000 -04:00
-cheat_mode: false
+start_time: 2013-08-26 17:23:41.099137000 -04:00
+cheat_mode: true
+new: false
