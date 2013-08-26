@@ -71,7 +71,18 @@ class Minesweeper
   end
 
   def over?
-    true if @pow || @reveal_count == ((@size**2) - @bomb_num)
+    true if @pow || check_victory == @bomb_num
+  end
+
+  def check_victory
+    unrevealed_count = 0
+    @board.each do |x|
+      x.each do |y|
+        unrevealed_count += 1 if ["*", "F"].include?(y.display)
+      end
+    end
+    puts "Unreveal count is: #{unrevealed_count}"
+    unrevealed_count
   end
 
   def user_input
@@ -104,12 +115,13 @@ class Minesweeper
       neighbors = neighbors(x, y)
       count = count_bombs(neighbors)
       @board[x][y].display = count.to_s
-      @reveal_count +=1
+
     end
     if count == 0
       @board[x][y].display = "0"
       neighbors.each { |neighbor| reveal(neighbor.x, neighbor.y) }
     end
+
   end
 
   def count_bombs(neighbors)
@@ -133,5 +145,6 @@ class Minesweeper
 
 end
 
-ms = Minesweeper.new(9, 10)
+ms = Minesweeper.new(9 , 10)
+ms.run
 
