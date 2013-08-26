@@ -17,4 +17,19 @@ class Minesweeper
     end
   end
 
+  def fill_bombs
+    placed_bombs = 0
+    coordinates = (1..@size).to_a
+
+    until placed_boms = @bomb_num
+      x = coordinates.shuffle
+      y = coordinates.shuffle
+
+      unless self[x][y].bomb
+       self[x][y].bomb = true
+       placed_bombs += 1
+      end
+    end
+  end
+
 end
