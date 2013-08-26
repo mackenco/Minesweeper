@@ -5,14 +5,15 @@ class Minesweeper
   def initialize(size, bomb_num)
     @size = size
     @bomb_num = bomb_num
+    @board = []
   end
 
   def build_board
     @size.times do |x|
-      x = []
+      @board[x] = []
       x.each do |y|
         square = Square.new(x, y)
-        x[y] = square
+        @board[x][y] = square
       end
     end
   end
@@ -25,8 +26,8 @@ class Minesweeper
       x = coordinates.shuffle
       y = coordinates.shuffle
 
-      unless self[x][y].bomb
-       self[x][y].bomb = true
+      unless @board[x][y].bomb
+       @board[x][y].bomb = true
        placed_bombs += 1
       end
     end
