@@ -44,7 +44,15 @@ class Minesweeper
 
   def print_board
     @board.each do |x|
-      x.each { |y| print y.display + " " }
+      # x.each { |y| print y.display + " " }
+      # puts ""
+      x.each do |y|
+        if y.bomb
+          print "! "
+        else
+          print y.display + " "
+        end
+      end
       puts ""
     end
   end
@@ -66,7 +74,7 @@ class Minesweeper
   def user_input
     p "Do something"
     input = gets.chomp
-    case input[0]
+    case input[0].upcase
     when "R"
       reveal(input[1].to_i, input[2].to_i)
     when "F"
@@ -85,17 +93,19 @@ class Minesweeper
   end
 
   def reveal(x,y)
+    count = nil
     if @board[x][y].bomb
       @board[x][y].display = "X"
       @pow = true
     else
-      count = count_bombs(neighbors(x, y))
-
-
-
+      neighbors = neighbors(x, y)
+      count = count_bombs(neighbors)
+      @board[x][y].display = count.to_s
+    end
+    if count == 0
+      neighbors.each { |neighbor| reveal(neighbor.x, neighbor.y) }
     end
   end
-
 
   def count_bombs(neighbors)
     neighbors.inject(0) { |total, neighbor| neighbor.bomb ? total + 1 : total }
@@ -106,9 +116,11 @@ class Minesweeper
     neighbors = []
 
     POSSIBLE_NEIGHBORS.each do |poss|
-      square = board[poss[0] + x][poss[1] + y]
-      neighbors << square unless square.nil? ||
-                             ("0".."8").include?(square.display)
+      if (poss[0] + x).between?(0, @size-1) &&
+                                            (poss[1] + y).between?(0, @size-1)
+        square = board[poss[0] + x][poss[1] + y]
+        neighbors << square unless ("0".."8").include?(square.display)
+      end
     end
 
     neighbors

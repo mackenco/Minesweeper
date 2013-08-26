@@ -1,5 +1,5 @@
 class Square
-  attr_accessor :bomb, :display
+  attr_accessor :bomb, :display, :x, :y
 
 
   def initialize(x, y, bomb = false, display = "*")
