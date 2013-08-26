@@ -2,7 +2,7 @@ load 'square.rb'
 
 class Minesweeper
 
-  attr_accessor :size, :bomb_num, :board
+  attr_accessor :size, :bomb_num, :board, :pow
   POSSIBLE_NEIGHBORS = [[0, 1], [0, -1],
                         [1, 0], [-1, 0],
                         [1, 1], [-1, -1],
@@ -25,7 +25,6 @@ class Minesweeper
       user_input
       print_board
     end
-
   end
 
   def build_board
@@ -87,30 +86,12 @@ class Minesweeper
   def user_input
     p "Do something"
     input = gets.chomp.split(" ")
+    current_square = @board[input[1].to_i][input[2].to_i]
     case input[0].upcase
     when "R"
-      reveal(input[1].to_i, input[2].to_i)
+      current_square.reveal(self)
     when "F"
-      flag(input[1].to_i, input[2].to_i)
-    end
-  end
-
-  def reveal(x,y)
-    count = nil
-    unless @board[x][y].display == "F"
-      if @board[x][y].bomb
-        @board[x][y].display = "X"
-        @pow = true
-      else
-        neighbors = neighbors(x, y)
-        count = count_bombs(neighbors)
-        @board[x][y].display = count.to_s
-
-      end
-      if count == 0
-        @board[x][y].display = "0"
-        neighbors.each { |neighbor| reveal(neighbor.x, neighbor.y) }
-      end
+      current_square.flag
     end
   end
 
@@ -133,13 +114,6 @@ class Minesweeper
     (x1 + x2).between?(0, @size - 1)
   end
 
-  def flag(x,y)
-    if @board[x][y].display == "F"
-      @board[x][y].display = "*"
-    else
-      @board[x][y].display = "F"
-    end
-  end #move into Square
 end
 
 ms = Minesweeper.new(9 , 10)
