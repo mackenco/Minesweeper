@@ -16,6 +16,18 @@ class Minesweeper
     @reveal_count = 0
   end
 
+  def run
+    build_board
+    fill_bombs
+    print_board
+
+    until over?
+      user_input
+      print_board
+    end
+
+  end
+
   def build_board
     @size.times do |x|
       @board[x] = []
@@ -57,20 +69,8 @@ class Minesweeper
     end
   end
 
-  def run
-    build_board
-    fill_bombs
-    print_board
-
-    until over?
-      user_input
-      print_board
-    end
-
-  end
-
   def over?
-    true if @pow || check_victory == @bomb_num
+    @pow || check_victory == @bomb_num
   end
 
   def check_victory
@@ -92,14 +92,6 @@ class Minesweeper
       reveal(input[1].to_i, input[2].to_i)
     when "F"
       flag(input[1].to_i, input[2].to_i)
-    end
-  end
-
-  def flag(x,y)
-    if @board[x][y].display == "F"
-      @board[x][y].display = "*"
-    else
-      @board[x][y].display = "F"
     end
   end
 
@@ -127,20 +119,27 @@ class Minesweeper
   end
 
   def neighbors(x, y)
-
     neighbors = []
-
     POSSIBLE_NEIGHBORS.each do |poss|
-      if (poss[0] + x).between?(0, @size-1) &&
-                                            (poss[1] + y).between?(0, @size-1)
+      if on_board?(poss[0], x) && on_board?(poss[1], y)
         square = board[poss[0] + x][poss[1] + y]
         neighbors << square unless ("0"...@size.to_s).include?(square.display)
       end
     end
-
     neighbors
   end
 
+  def on_board?(x1, x2)
+    (x1 + x2).between?(0, @size - 1)
+  end
+
+  def flag(x,y)
+    if @board[x][y].display == "F"
+      @board[x][y].display = "*"
+    else
+      @board[x][y].display = "F"
+    end
+  end #move into Square
 end
 
 ms = Minesweeper.new(9 , 10)
