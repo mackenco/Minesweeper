@@ -186,7 +186,7 @@ class Minesweeper
 
 end
 
-puts "MINESWEEPER: Do you want to start a new game or load an existing game?"
+puts "MINESWEEPER: Do you want to START a new game or LOAD an existing game?"
 input = gets.chomp
 case input
 when 'load'
